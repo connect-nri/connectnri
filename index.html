@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="ConnectNRI - Connecting NRIs with their roots"/>
 
-  <!-- Open Graph tags fo
-  r WhatsApp/social preview -->
+  <!-- Open Graph tags for WhatsApp/social preview -->
   <meta property="og:title" content="ConnectNRI" />
   <meta property="og:description" content="View this post on ConnectNRI" />
-  <meta property="og:image" content="https://YOUR_USERNAME.github.io/connectnri/logo.png" />
-  <meta property="og:url" content="https://YOUR_USERNAME.github.io/connectnri/" />
+  <meta property="og:image" content="https://dasvandh.github.io/connectnri/logo.png" />
+  <meta property="og:url" content="https://dasvandh.github.io/connectnri/" />
   <meta property="og:type" content="website" />
 
   <title>ConnectNRI</title>
@@ -38,22 +37,14 @@
     }
 
     .logo {
-      font-size: 56px;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
       margin-bottom: 12px;
     }
 
-    .app-name {
-      font-size: 26px;
-      font-weight: 800;
-      color: #166534;
-      margin-bottom: 6px;
-    }
-
-    .tagline {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 32px;
-    }
+    .app-name { font-size: 26px; font-weight: 800; color: #166534; margin-bottom: 6px; }
+    .tagline { font-size: 14px; color: #6b7280; margin-bottom: 32px; }
 
     .status-box {
       background: #f0fdf4;
@@ -63,27 +54,13 @@
       margin-bottom: 28px;
     }
 
-    .status-icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .status-text {
-      font-size: 14px;
-      color: #166534;
-      font-weight: 500;
-    }
-
-    .status-sub {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 4px;
-    }
+    .status-icon { font-size: 28px; margin-bottom: 8px; }
+    .status-text { font-size: 14px; color: #166534; font-weight: 500; }
+    .status-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
 
     .spinner {
       display: inline-block;
-      width: 20px;
-      height: 20px;
+      width: 20px; height: 20px;
       border: 3px solid #bbf7d0;
       border-top-color: #16a34a;
       border-radius: 50%;
@@ -91,50 +68,22 @@
       margin-bottom: 8px;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .btn {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      margin-bottom: 12px;
+      display: block; width: 100%;
+      padding: 16px; border-radius: 14px;
+      font-size: 16px; font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      border: none; margin-bottom: 12px;
       transition: opacity 0.2s;
     }
-
     .btn:active { opacity: 0.85; }
+    .btn-primary { background: #16a34a; color: white; }
+    .btn-secondary { background: #f3f4f6; color: #374151; font-weight: 600; }
+    .divider { font-size: 12px; color: #9ca3af; margin: 4px 0 12px; }
+    .footer { font-size: 11px; color: #9ca3af; margin-top: 24px; }
 
-    .btn-primary {
-      background: #16a34a;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #f3f4f6;
-      color: #374151;
-      font-weight: 600;
-    }
-
-    .divider {
-      font-size: 12px;
-      color: #9ca3af;
-      margin: 4px 0 12px;
-    }
-
-    .footer {
-      font-size: 11px;
-      color: #9ca3af;
-      margin-top: 24px;
-    }
-
-    /* Hide sections by default */
     #loading-section { display: block; }
     #success-section { display: none; }
     #fallback-section { display: none; }
@@ -142,63 +91,60 @@
 </head>
 <body>
   <div class="card">
-    <div class="logo">🌿</div>
+
+    <!-- Punjab map outline as logo -->
+    <img
+      class="logo"
+      src="https://dasvandh.github.io/connectnri/punjab.png"
+      alt="Punjab"
+      onerror="this.style.display='none'"
+    />
+
     <div class="app-name">ConnectNRI</div>
     <div class="tagline">Connecting NRIs with their roots</div>
 
-    <!-- Loading state -->
     <div id="loading-section" class="status-box">
       <div class="spinner"></div>
       <div class="status-text">Opening ConnectNRI...</div>
       <div class="status-sub">Please wait a moment</div>
     </div>
 
-    <!-- Success hint (shown after attempt) -->
     <div id="success-section" class="status-box">
       <div class="status-icon">✅</div>
       <div class="status-text">Opening in the app...</div>
       <div class="status-sub">Switch to the ConnectNRI app</div>
     </div>
 
-    <!-- Fallback (shown if app not installed) -->
     <div id="fallback-section">
       <div class="status-box" style="margin-bottom: 20px;">
         <div class="status-icon">📱</div>
         <div class="status-text">Get ConnectNRI</div>
         <div class="status-sub">Install the app to view this post</div>
       </div>
-      <a
-        class="btn btn-primary"
-        id="playstore-btn"
-        href="https://play.google.com/store/apps/details?id=com.connectnri.app">
+      <a class="btn btn-primary" id="playstore-btn"
+         href="https://play.google.com/store/apps/details?id=com.connectnri.app">
         ▶ Get it on Google Play
       </a>
       <div class="divider">or</div>
-      <a
-        class="btn btn-secondary"
-        id="open-app-btn"
-        href="#">
+      <button class="btn btn-secondary" id="try-again-btn">
         Try Opening App Again
-      </a>
+      </button>
     </div>
 
-    <div class="footer">
-      ConnectNRI &copy; 2025 · All rights reserved
-    </div>
+    <div class="footer">ConnectNRI &copy; 2025 · All rights reserved</div>
   </div>
 
   <script>
     const PACKAGE_NAME = 'com.connectnri.app';
     const PLAY_STORE_URL = `https://play.google.com/store/apps/details?id=${PACKAGE_NAME}`;
 
-    // Read post ID from URL query param: ?post=SOME_ID
     const params = new URLSearchParams(window.location.search);
     const postId = params.get('post');
 
     const loadingSection = document.getElementById('loading-section');
     const successSection = document.getElementById('success-section');
     const fallbackSection = document.getElementById('fallback-section');
-    const openAppBtn = document.getElementById('open-app-btn');
+    const tryAgainBtn = document.getElementById('try-again-btn');
 
     function showFallback() {
       loadingSection.style.display = 'none';
@@ -212,38 +158,41 @@
       successSection.style.display = 'block';
     }
 
-    function tryOpenApp() {
-      if (postId) {
-        // Custom scheme deep link: connectnri://post/POST_ID
-        const deepLink = `connectnri://post/${postId}`;
-        openAppBtn.href = deepLink;
+    function tryOpenApp(postId) {
+      const deepLink = `intent://post/${postId}#Intent;scheme=connectnri;package=com.connectnri.app;S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`;
 
-        // Attempt to open app
-        window.location.href = deepLink;
+      const a = document.createElement('a');
+      a.href = deepLink;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
 
-        // Track if page stays visible (app didn't open)
-        let hidden = false;
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) hidden = true;
-        });
+      let appOpened = false;
+      const onBlur = () => { appOpened = true; };
+      window.addEventListener('blur', onBlur);
 
-        // After 2.5s, if still visible → app not installed
-        setTimeout(() => {
-          if (!hidden) {
-            showFallback();
-          } else {
-            showSuccess();
-          }
-        }, 2500);
-
-      } else {
-        // No post ID — just redirect to Play Store
-        window.location.href = PLAY_STORE_URL;
-      }
+      setTimeout(() => {
+        window.removeEventListener('blur', onBlur);
+        if (appOpened) {
+          showSuccess();
+        } else {
+          showFallback();
+        }
+      }, 2500);
     }
 
-    // Run on page load
-    tryOpenApp();
+    tryAgainBtn?.addEventListener('click', () => {
+      loadingSection.style.display = 'block';
+      fallbackSection.style.display = 'none';
+      if (postId) tryOpenApp(postId);
+    });
+
+    if (postId) {
+      tryOpenApp(postId);
+    } else {
+      window.location.href = PLAY_STORE_URL;
+    }
   </script>
 </body>
 </html>
