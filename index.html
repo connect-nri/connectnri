@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="ConnectNRI - Connecting NRIs with their roots"/>
   <meta property="og:title" content="ConnectNRI" />
-  <meta property="og:description" content="View this post on ConnectNRI" />
+  <meta property="og:description" content="View this on ConnectNRI" />
   <meta property="og:image" content="https://connect-nri.github.io/connectnri/punjab.png" />
   <meta property="og:url" content="https://connect-nri.github.io/connectnri/" />
   <meta property="og:type" content="website" />
@@ -79,7 +79,7 @@
       <div class="status-box" style="margin-bottom:20px;">
         <div class="status-icon">📱</div>
         <div class="status-text">App not detected</div>
-        <div class="status-sub">Install ConnectNRI to view this post</div>
+        <div class="status-sub">Install ConnectNRI to view this</div>
       </div>
       <a class="btn btn-primary"
          href="https://play.google.com/store/apps/details?id=com.connectnri.app">
@@ -98,8 +98,9 @@
     const PACKAGE   = 'com.connectnri.app';
     const STORE_URL = 'https://play.google.com/store/apps/details?id=' + PACKAGE;
 
-    const params = new URLSearchParams(window.location.search);
-    const postId = params.get('post');
+    const params    = new URLSearchParams(window.location.search);
+    const postId    = params.get('post');
+    const profileId = params.get('profile');
 
     const elLoading  = document.getElementById('loading-section');
     const elSuccess  = document.getElementById('success-section');
@@ -121,21 +122,17 @@
       elFallback.style.display = 'none';
     }
 
-    function tryOpenApp(id) {
-      // ✅ Android intent:// URL — most reliable in Chrome
-      // Must match AndroidManifest: scheme=connectnri, host=post
-      // Path segment = the post ID
+    // type = 'post' or 'profile', id = the actual ID
+    function tryOpenApp(type, id) {
       const intentUrl =
-        'intent://post/' + encodeURIComponent(id) +
+        'intent://' + type + '/' + encodeURIComponent(id) +
         '#Intent' +
         ';scheme=connectnri' +
         ';package=' + PACKAGE +
         ';S.browser_fallback_url=' + encodeURIComponent(STORE_URL) +
         ';end';
 
-      // Also try the plain custom scheme as backup via hidden iframe
-      // (works on some browsers where intent:// is blocked)
-      const customUrl = 'connectnri://post/' + encodeURIComponent(id);
+      const customUrl = 'connectnri://' + type + '/' + encodeURIComponent(id);
 
       let left = false;
       window.addEventListener('blur', function onBlur() {
@@ -151,7 +148,7 @@
       a.click();
       document.body.removeChild(a);
 
-      // Fallback iframe fires the custom scheme silently
+      // Fallback: iframe fires custom scheme silently
       setTimeout(function() {
         if (!left) {
           const iframe = document.createElement('iframe');
@@ -162,27 +159,24 @@
         }
       }, 500);
 
-      // After 3s decide outcome
       setTimeout(function() {
-        if (left) {
-          showSuccess();
-        } else {
-          showFallback();
-        }
+        if (left) { showSuccess(); } else { showFallback(); }
       }, 3000);
     }
 
     document.getElementById('try-again-btn')
       .addEventListener('click', function() {
         showLoading();
-        if (postId) tryOpenApp(postId);
+        if (postId)    tryOpenApp('post', postId);
+        else if (profileId) tryOpenApp('profile', profileId);
       });
 
     // ── Entry point ──
     if (postId) {
-      tryOpenApp(postId);
+      tryOpenApp('post', postId);
+    } else if (profileId) {
+      tryOpenApp('profile', profileId);
     } else {
-      // No post ID in URL — go straight to Play Store
       window.location.href = STORE_URL;
     }
   </script>
