@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.connectnri.app",
+    "sha256_cert_fingerprints": ["97:19:D3:3F:CD:BD:EB:5A:EF:9E:30:61:8B:ED:D1:5B:81:77:C5:89:1E:2B:2C:35:75:30:3D:F5:B1:F7:38:AB"]
+  }
+}]
